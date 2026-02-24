@@ -7,9 +7,9 @@ class Automata:
 
 #REGLAS
 alfabeto=[
-    'C', #Cuadrado
-    'T', #Triangulo
-    'R', #Rectangulo
+    'C', #Lado
+    'T', #Giro
+    'R', #
 ]
 estados=[
     'Q0',
