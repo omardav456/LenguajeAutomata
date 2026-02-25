@@ -1,25 +1,11 @@
-
+from .transitions import TransitionFunction, TransitionTable
 
 class Automata:
-    def __init__(self,alfabeto=None, estados=None, qCero='', F=None, funcionTransicion=None):
-        pass
+    def __init__(self,alfabeto=None, estados=None, qCero='', aceptacion=None, funcionTransicion=None):
+        self.alfabeto=alfabeto
+        self.estados=estados
+        self.qCero= qCero
+        self.aceptacion=aceptacion
+        self.funcionTransicion= funcionTransicion
+        
     
-
-#REGLAS
-alfabeto=[
-    'C', #Lado
-    'T', #Giro
-    'R', #
-]
-estados=[
-    'Q0',
-    'Q1', #Dibujar linea
-    'Q2', #Girar x cantidad
-    'Q3', #Estado de aceptación
-]
-qCero=estados[0]
-F= [
-    'Q3'
-]
-
-
