@@ -3,7 +3,7 @@ El proyecto tiene la siguiente estructura:
 ├── main.py
 ├── automata/
 │   ├── __init__.py
-│   ├── automata.py
+│   ├── automata.py 
 │   ├── transitions.py
 │
 ├── drawing/
@@ -14,6 +14,10 @@ El proyecto tiene la siguiente estructura:
 │   ├── __init__.py
 │   ├── graph.py
 │
+├── core/
+│   ├── __init__.py
+│   ├── automata_controller.py
+│
 └── utils/
     ├── __init__.py
     ├── formatter.py
@@ -22,12 +26,12 @@ Las obligaciones recaen de la siguiente manera:
 
 1. main.py: Punto de entrada del programa. Orquestación del sistema .Interacción con el usuario. Llamado a los módulos. Flujo general del programa. NO tiene lógica del automata ni lógica del dibujo
 
-2. automata.py: Contiene la definición del presente automata. Es el corazón 
+2. automata.py: Contiene la definición del presente automata y una función para procesar palabras y determinar si pertenecen o no al autómata
 
-3. transitions.py: Define la función, la tabla y la lógica para pasar de un estado a otro.
+3. transitions.py: Define la función de transición, la tabla y la lógica para pasar de un estado a otro.
 
 4. shapes.py: funciones que dibujan.
 
-5. graph.py: generación del grafo del automata.
+5. graph.py: generación del grafo del autómata.
 
 6. formatter.py: Formateo de salidas por consola, estética.
