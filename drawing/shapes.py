@@ -1,12 +1,35 @@
+import math
 class Shapes:
 
     def __init__(self, canvas):
         self.canvas = canvas
-        self.size = 50
-        self.x = 100
-        self.y = 100
+        self.x = 200
+        self.y = 200
         self.angle = 0
+        self.step = 50
 
+    def avanzar(self):
+        rad = math.radians(self.angle)
+
+        new_x = self.x + self.step * math.cos(rad)
+        new_y = self.y - self.step * math.sin(rad)
+
+        self.canvas.create_line(self.x, self.y, new_x, new_y)
+
+        self.x = new_x
+        self.y = new_y
+
+    def girar(self, grados):
+        self.angle += grados
+        
+    def errores(self, mensaje):
+        self.canvas.create_text(
+            200, 20,
+            text=mensaje,
+            fill="black",
+            font=("Arial", 14)
+        )
+    
     def set_size(self, size_symbol):
         if size_symbol == 'S':
             self.size = 30
@@ -15,32 +38,4 @@ class Shapes:
         elif size_symbol == 'L':
             self.size = 100
 
-    def draw_square(self):
-        self.canvas.create_rectangle(
-            self.x,
-            self.y,
-            self.x + self.size,
-            self.y + self.size,
-            fill="blue"
-        )
-
-    def draw_triangle(self):
-        self.canvas.create_polygon(
-            self.x, self.y,
-            self.x + self.size, self.y,
-            self.x + self.size/2, self.y - self.size,
-            fill="green"
-        )
-
-    def draw_rectangle(self):
-        self.canvas.create_rectangle(
-            self.x,
-            self.y,
-            self.x + self.size * 1.5,
-            self.y + self.size,
-            fill="red"
-        )
-
-    def rotate(self):
-        self.x += 20
-        self.y += 20
+   

@@ -1,18 +1,18 @@
 import customtkinter as ctk
 import tkinter as tk
 from drawing.shapes import Shapes
-
+from automata.automata import Automata
+from core.automata_controller import AutomataController
 
 class App:
 
-    def __init__(self):
+    def __init__(self, automata):
+        self.automata= automata
         ctk.set_appearance_mode("dark")
         ctk.set_default_color_theme("blue")
-
         self.root = ctk.CTk()
         self.root.geometry("900x600")
         self.root.title("Autómata Dibujante")
-
         # Variables del autómata
         self.palabra = ""
         self.indice = 0
@@ -22,6 +22,8 @@ class App:
     # ==============================
     # UI
     # ==============================
+    def getCanvas(self):
+        return self.canvas
 
     def setup_ui(self):
 
@@ -33,16 +35,9 @@ class App:
             self.frameEntry,
             placeholder_text="Ingrese palabra del autómata"
         )
-        self.entry.pack(side="left", padx=10, pady=10)
+        self.entry.pack(side="bottom", padx=10, pady=10)
 
         self.entry.bind("<Return>", self.iniciar)
-
-        self.btn = ctk.CTkButton(
-            self.frameEntry,
-            text="Ejecutar",
-            command=self.iniciar
-        )
-        self.btn.pack(side="left", padx=10)
 
         # Canvas principal
         self.canvas = tk.Canvas(
@@ -64,8 +59,11 @@ class App:
         """Inicia el procesamiento del autómata"""
         self.canvas.delete("all")
         self.palabra = self.entry.get().upper()
-        self.indice = 0
-        self.procesar_simbolo()
+        self.automata.procesar(self.palabra)
+        shapes= Shapes(self.canvas)
+        automataC= AutomataController(automata=self.automata, shapes=shapes)
+        automataC.iniciar(palabra=self.palabra)
+        
 
     def procesar_simbolo(self):
         """Procesa símbolo por símbolo respetando el orden"""

@@ -10,8 +10,11 @@ class TransitionFunction:
     
 
 class TransitionTable:
-    def __init__(self, listadeTransitionFunction= TransitionFunction()):
-        self.transicions=listadeTransitionFunction
+    def __init__(self, listadeTransitionFunction= None):
+        if listadeTransitionFunction==None:
+            self.transicions=[]
+        else: 
+            self.transicions=listadeTransitionFunction
     
     def getNextState(self, estadoActual, entrada):
         for transicion in self.transicions:
