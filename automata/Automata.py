@@ -20,4 +20,4 @@ class Automata:
             if siguienteEstado is None:
                 return False
             estadoActual=siguienteEstado
-        return estadoActual in self.aceptacion    
+        return estadoActual in self.aceptacion  

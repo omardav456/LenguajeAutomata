@@ -8,6 +8,7 @@ from ui.app import App
 alfabeto= {
     "S",
     "M",
+    "L",
     "C",
     "T",
     "R",
@@ -28,11 +29,11 @@ automata = Automata(
     alfabeto=alfabeto,
     estados={"q0","q1","q2","q3"},
     qCero="q0",
-    aceptacion={"q3"},
+    aceptacion={"q3", "q2"},
     funcionTransicion=tabla
 )
 
-print(automata.procesar("STAGAGAGA"))
+print(automata.procesar("LTAGAGAGA"))
 #Hace validacion 
 app = App(automata)
 app.run()

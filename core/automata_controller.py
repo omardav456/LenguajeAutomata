@@ -9,21 +9,34 @@ class AutomataController:
         self.funcionTransicion = self.automata.getFuncionTransicion()
         self.shapes= shapes
     
-    def siguientePaso(self, state, word):
-        if self.funcionTransicion.getNextState(state,word)==None:
-            self.shapes.errores("ERROR PAPU")
-            print("Error")
+    def pertenece(self, word):
+        if self.automata.procesar(word):
+            self.shapes.cumpleAutomata("Pertenece", "green")
+            return True
+        else:
+            self.shapes.cumpleAutomata("NO Pertenece", "red")
+            return False
     
     def iniciar(self, palabra):
-        linea= palabra[0]
+        self.shapes.canvas.delete("all")
+        size= palabra[0]
+        print(size)
+        self.shapes.setSize(size)
+        print("ta bien")
         figure= palabra[1]
+        if figure=="T":
+            angulo=120
+        else:
+            angulo=90
+        self.shapes.escribir(palabra, primary=True)
+        if self.pertenece(palabra)== False:
+            return 
         for simbolo in palabra:
             if simbolo=='A':
                 self.shapes.avanzar()
-                self.shapes.error("Avanzar")
+                self.shapes.escribir("Avanzar")
             elif simbolo=='G':
-                self.shapes.girar(90)
-                self.shapes.avanzar()
-                self.shapes.error("Girar 90°")
+                self.shapes.girar(angulo)
+                self.shapes.escribir(f"Girar {angulo}°")
         
         
