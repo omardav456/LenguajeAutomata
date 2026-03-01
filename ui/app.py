@@ -4,6 +4,7 @@ import tkinter as tk
 from drawing.shapes import Shapes
 from automata.automata import Automata
 from core.automata_controller import AutomataController
+from visualization.graph import GrafoAutomata
 
 
 class App:
@@ -42,16 +43,30 @@ class App:
             highlightthickness=0
         )
         self.canvasFondo.place(relwidth=1, relheight=1)
+        
+        self.frameCentral = ctk.CTkFrame(self.root)
+        self.frameCentral.place(relx=0.5, rely=0.4, anchor="center")
+
+        # Canvas del Grafo (izquierda)
+        self.canvasGrafo = tk.Canvas(
+            self.frameCentral,
+            width=400,
+            height=550,
+            bg="#1e1e1e",
+            highlightthickness=0
+        )
+        self.canvasGrafo.grid(row=0, column=0, padx=10, pady=10)
 
         # Canvas del autómata (encima)
         self.canvas = tk.Canvas(
-            self.root,
+            self.frameCentral,
             width=800,
-            height=450,
+            height=550,
             bg="white",
             highlightthickness=0
         )
-        self.canvas.place(relx=0.5, rely=0.4, anchor="center")
+        
+        self.canvas.grid(row=0, column=1, padx=10, pady=10)
 
         # Frame inferior
         self.frameEntry = ctk.CTkFrame(self.root, height=100)
@@ -68,6 +83,7 @@ class App:
 
         # Motor de dibujo
         self.drawer = Shapes(self.canvas)
+        
 
     # ==============================
     # Control Autómata
@@ -75,12 +91,15 @@ class App:
 
     def iniciar(self, event=None):
         # Solo borrar lo del autómata
-        self.canvas.delete("automata")
+        self.canvas.delete("all")
+        self.canvasGrafo.delete("all")
         self.palabra = self.entry.get().strip().upper()
+        grafo = GrafoAutomata(self.canvasGrafo)
         shapes = Shapes(self.canvas)
         automataC = AutomataController(
             automata=self.automata,
-            shapes=shapes
+            shapes=shapes,
+            grafo=grafo
         )
         automataC.iniciar(palabra=self.palabra)
 

@@ -10,6 +10,13 @@ class Automata:
     
     def getFuncionTransicion(self):
         return self.funcionTransicion
+    
+    def getEstadoAceptacion(self):
+        return self.aceptacion
+    
+    def getEstados(self):
+        return self.estados
+    
     def procesar(self, word):
         estadoActual= self.qCero
         for simbolo in word:

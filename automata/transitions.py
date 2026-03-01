@@ -16,6 +16,9 @@ class TransitionTable:
         else: 
             self.transicions=listadeTransitionFunction
     
+    def getTransiciones(self):
+        return self.transicions
+    
     def getNextState(self, estadoActual, entrada):
         for transicion in self.transicions:
             if transicion.estadoActual == estadoActual and transicion.entrada == entrada :
